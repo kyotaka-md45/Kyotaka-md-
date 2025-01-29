@@ -1,10 +1,9 @@
-const {
-    quote
-} = require("@mengkodingan/ckptw");
+const { quote } = require("@mengkodingan/ckptw");
 const mime = require("mime-types");
+const Jimp = require("jimp");  // Importer Jimp
 
 module.exports = {
-    name: "sharpen",
+    name: "jimp",
     category: "tool",
     handler: {
         coin: 10
@@ -21,18 +20,30 @@ module.exports = {
         if (!checkMedia && !checkQuotedMedia) return await ctx.reply(quote(tools.msg.generateInstruction(["send", "reply"], "image")));
 
         try {
+            // Récupérer l'image en buffer
             const buffer = await ctx.msg.media.toBuffer() || await ctx.quoted?.media.toBuffer();
-            const uploadUrl = await tools.general.upload(buffer);
-            const apiUrl = tools.api.createUrl("fasturl", "/aiimage/imgsharpen", {
-                url: uploadUrl
-            });
 
+            // Charger l'image avec Jimp
+            const image = await Jimp.read(buffer);
+
+            // Appliquer un effet de netteté avec Jimp
+            image.convolute([
+                [ 0, -1,  0 ],
+                [-1,  5, -1 ],
+                [ 0, -1,  0 ]
+            ]);
+
+            // Convertir l'image traitée en buffer
+            const sharpenedBuffer = await image.getBufferAsync(Jimp.MIME_PNG);
+
+            // Envoyer l'image traitée
             return await ctx.reply({
                 image: {
-                    url: apiUrl
+                    buffer: sharpenedBuffer
                 },
                 mimetype: mime.lookup("png")
             });
+
         } catch (error) {
             consolefy.error(`Error: ${error}`);
             if (error.status !== 200) return await ctx.reply(config.msg.notFound);
