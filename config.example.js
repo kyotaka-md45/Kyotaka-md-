@@ -1,106 +1,102 @@
-// Modul dan dependensi yang diperlukan
+// Modules et dépendances nécessaires
 const pkg = require("./package.json");
-const {
-    monospace,
-    italic,
-    quote
-} = require("@mengkodingan/ckptw");
+const { monospace, italic, quote } = require("@mengkodingan/ckptw");
 
-// Konfigurasi
+// Configuration
 global.config = {
-    // Informasi bot dasar
+    // Informations de base sur le bot
     bot: {
-        name: "CKPTW", // Nama bot
-        prefix: /^[°•π÷×¶∆£¢€¥®™+✓_=|/~!?@#%^&.©^]/i, // Karakter awalan perintah yang diizinkan
-        phoneNumber: "", // Nomor telepon bot (opsional jika menggunakan QR code)
-        thumbnail: "https://itsreimau.is-a.dev/umbrx/dist/img/thumbnail/umbrx.jpg", // Gambar thumbnail bot
-        website: "https://chat.whatsapp.com/FxEYZl2UyzAEI2yhaH34Ye", // Website untuk WhatsApp bot
-        groupJid: "", // JID untuk group bot (opsional jika tidak menggunakan requireBotGroupMembership)
+        name: "KYOTAKA-md", // Nom du bot
+        prefix: /^[°•π÷×¶∆£¢€¥®™+✓_=|/~!?@#%^&.©^]/i, // Caractères autorisés pour les préfixes de commande
+        phoneNumber: "", // Numéro de téléphone du bot (optionnel si utilisation du QR code)
+        thumbnail: "", // Image miniature du bot
+        website: "", // Lien du groupe WhatsApp du bot
+        groupJid: "", // JID du groupe du bot (optionnel si "requireBotGroupMembership" est désactivé)
 
-        // Konfigurasi autentikasi sesi bot
+        // Configuration de l'authentification de session du bot
         authAdapter: {
-            adapter: "default", // Pilihan adapter: 'default', 'mysql', 'mongo', 'firebase'
+            adapter: "default", // Choix de l'adaptateur: 'default', 'mysql', 'mongo', 'firebase'
 
-            // Konfigurasi MySQL
+            // Configuration MySQL
             mysql: {
-                host: "localhost:3306", // Nama host 
-                user: "root", // Nama pengguna
-                password: "admin123", // Kata sandi
-                database: "ckptw-wabot" // Nama database
+                host: "localhost:3306", // Nom d'hôte
+                user: "root", // Nom d'utilisateur
+                password: "kyo45", // Mot de passe
+                database: "kyotaka-md" // Nom de la base de données
             },
 
-            // Konfigurasi MongoDB
+            // Configuration MongoDB
             mongodb: {
-                url: "mongodb://localhost:27017/ckptw-wabot" // URL
+                url: "mongodb://localhost:27017/ckptw-wabot" // URL de connexion
             },
 
-            // Konfigurasi Firebase
+            // Configuration Firebase
             firebase: {
-                tableName: "ckptw-wabot", // Nama tabel
-                session: "state" // Nama sesi
+                tableName: "Kyotaka", // Nom de la table
+                session: "state" // Nom de la session
             }
         }
     },
 
-    // Pesan bot yang disesuaikan untuk situasi tertentu
+    // Messages personnalisés du bot pour certaines situations
     msg: {
-        admin: quote("⛔ Perintah hanya dapat diakses oleh admin grup!"), // Pesan ketika perintah hanya untuk admin
-        banned: quote("⛔ Tidak dapat memproses karena Anda telah dibanned oleh Owner!"), // Pesan untuk pengguna yang dibanned
-        botAdmin: quote("⛔ Tidak dapat memproses karena bot bukan admin grup ini!"), // Pesan jika bot bukan admin di grup
-        botGroupMembership: quote("⛔ Tidak dapat memproses karena Anda tidak bergabung dengan grup bot! Ketik '/botgroup' untuk mendapatkan tautan grup bot."), // Pesan untuk pengguna yang tidak ada dalam grup
-        coin: quote("⛔ Tidak dapat memproses karena koin Anda tidak cukup!"), // Pesan ketika koin tidak cukup
-        cooldown: quote("🔄 Perintah ini sedang dalam cooldown, tunggu..."), // Pesan saat cooldown perintah
-        group: quote("⛔ Perintah hanya dapat diakses dalam grup!"), // Pesan untuk perintah grup
-        owner: quote("⛔ Perintah hanya dapat diakses Owner!"), // Pesan untuk perintah yang hanya owner bisa akses
-        premium: quote("⛔ Tidak dapat memproses karena Anda bukan pengguna Premium!"), // Pesan jika pengguna bukan Premium
-        private: quote("⛔ Perintah hanya dapat diakses dalam obrolan pribadi!"), // Pesan untuk perintah obrolan pribadi
-        restrict: quote("⛔ Perintah ini telah dibatasi karena alasan keamanan!"), // Pesan pembatasan perintah
+        admin: quote("⛔ Cette commande est réservée aux administrateurs du groupe !"), // Message pour les commandes réservées aux admins
+        banned: quote("⛔ Vous ne pouvez pas exécuter cette commande car vous avez été banni par le propriétaire !"), // Message pour les utilisateurs bannis
+        botAdmin: quote("⛔ Impossible d'exécuter cette commande car le bot n'est pas administrateur du groupe !"), // Message si le bot n'est pas admin
+        botGroupMembership: quote("⛔ Vous ne pouvez pas exécuter cette commande car vous n'êtes pas membre du groupe du bot ! Tapez '/botgroup' pour obtenir le lien du groupe."), // Message si l'utilisateur ne fait pas partie du groupe
+        coin: quote("⛔ Vous ne pouvez pas exécuter cette commande car vous n'avez pas assez de pièces !"), // Message si l'utilisateur manque de pièces
+        cooldown: quote("🔄 Cette commande est en cooldown, veuillez patienter..."), // Message de cooldown
+        group: quote("⛔ Cette commande ne peut être utilisée que dans un groupe !"), // Message pour les commandes de groupe uniquement
+        owner: quote("⛔ Cette commande est réservée au propriétaire du bot !"), // Message pour les commandes réservées au propriétaire
+        premium: quote("⛔ Vous ne pouvez pas exécuter cette commande car vous n'êtes pas un utilisateur Premium !"), // Message pour les utilisateurs non Premium
+        private: quote("⛔ Cette commande ne peut être utilisée qu'en message privé !"), // Message pour les commandes en privé uniquement
+        restrict: quote("⛔ Cette commande a été restreinte pour des raisons de sécurité !"), // Message de restriction de commande
 
-        watermark: `@${pkg.name} / v${pkg.version}`, // Watermark nama dan versi pada bot
-        footer: italic("Developed by ItsReimau"), // Footer di pesan bot
-        readmore: "\u200E".repeat(4001), // String read more
-        note: "“Lorem ipsum dolor sit amet, tenebris in umbra, vitae ad mortem.”", // Catatan
+        watermark: `@${pkg.name} / v${pkg.version}`, // Watermark avec le nom et la version du bot
+        footer: italic("Développé par ItsReimau"), // Footer des messages du bot
+        readmore: "\u200E".repeat(4001), // Texte "Lire la suite"
+        note: "“Lorem ipsum dolor sit amet, tenebris in umbra, vitae ad mortem.”", // Note
 
-        wait: quote("🔄 Tunggu sebentar..."), // Pesan loading
-        notFound: quote("❎ Tidak ada yang ditemukan! Coba lagi nanti."), // Pesan item tidak ditemukan
-        urlInvalid: quote("❎ URL tidak valid!") // Pesan jika URL tidak valid
+        wait: quote("🔄 Veuillez patienter..."), // Message d'attente
+        notFound: quote("❎ Aucun résultat trouvé ! Réessayez plus tard."), // Message quand rien n'est trouvé
+        urlInvalid: quote("❎ URL invalide !") // Message en cas d'URL invalide
     },
 
-    // Informasi owner bot
+    // Informations du propriétaire du bot
     owner: {
-        name: "", // Nama owner bot
-        organization: "", // Nama organisasi owner bot
-        id: "", // Nomor telepon owner bot
-        co: [""] // Nomor co-owner bot
+        name: "", // Nom du propriétaire du bot
+        organization: "", // Organisation du propriétaire
+        id: "", // Numéro de téléphone du propriétaire
+        co: [""] // Co-propriétaires du bot
     },
 
-    // Kunci API
+    // Clés API
     APIKey: {
-        nexoracle: "free_key@maher_apis", // APIKey disediakan oleh Maher Zubair
-        ssateam: "root" // APIKey disediakan oleh Fainshe
+        nexoracle: "free_key@maher_apis", // Clé API fournie par Maher Zubair
+        ssateam: "root" // Clé API fournie par Fainshe
     },
 
-    // Stiker bot
+    // Configuration des stickers du bot
     sticker: {
-        packname: "", // Nama paket stiker
-        author: "github.com/itsreimau/ckptw-wabot" // Pembuat stiker
+        packname: "", // Nom du pack de stickers
+        author: "" // Auteur du pack de stickers
     },
 
-    // Sistem bot
+    // Paramètres du système du bot
     system: {
-        alwaysOnline: true, // Bot selalu berstatus "online"
-        autoMention: true, // Bot otomatis mention seseorang dalam pesan yang dikirim
-        autoRead: true, // Bot baca pesan otomatis
-        autoTypingOnCmd: true, // Tampilkan status "sedang mengetik" saat memproses perintah
-        cooldown: 10 * 1000, // Jeda antar perintah (ms)
-        port: 3000, // Port (jika pakai server)
-        restrict: false, // Batasi akses perintah
-        requireBotGroupMembership: false, // Harus gabung grup bot
-        selfOwner: false, // Bot jadi owner sendiri
-        selfReply: true, // Bot balas pesan bot sendiri
-        timeZone: "Asia/Jakarta", // Zona waktu bot
-        useCoin: true, // Pakai koin
-        usePairingCode: false, // Pakai kode pairing untuk koneksi
-        useServer: false // Jalankan bot dengan server
+        alwaysOnline: flase, // Le bot reste toujours en ligne
+        autoMention: true, // Le bot mentionne automatiquement une personne dans ses réponses
+        autoRead: flase, // Le bot lit automatiquement les messages
+        autoTypingOnCmd: true, // Afficher "en train d'écrire..." lors du traitement d'une commande
+        cooldown: 10 * 1000, // Délai entre deux commandes (ms)
+        port: 3000, // Port (si le bot est utilisé avec un serveur)
+        restrict: false, // Restreindre l'accès aux commandes
+        requireBotGroupMembership: false, // Exiger d'être membre du groupe du bot
+        selfOwner: false, // Le bot est son propre propriétaire
+        selfReply: true, // Le bot peut répondre à ses propres messages
+        timeZone: "Afrique/Abidjan", // Fuseau horaire du bot
+        useCoin: true, // Activer le système de pièces
+        usePairingCode: true, // Utiliser un code de jumelage pour la connexion
+        useServer: false // Faire fonctionner le bot avec un serveur
     }
 };
