@@ -33,12 +33,12 @@ module.exports = {
             });
         } catch (error) {
             consolefy.error(`Error: ${error}`);
-            return await ctx.reply(quote(`⚠️ Terjadi kesalahan: ${error.message}`));
+            return await ctx.reply(quote(`⚠️ une erreur c'est produite: ${error.message}`));
         }
     }
 };
 
-// Dibuat oleh UdeanDev (https://github.com/udeannn)
+
 async function webp2mp4(blob) {
     try {
         const form = new FormData();
