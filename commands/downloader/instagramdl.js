@@ -6,7 +6,7 @@ const mime = require("mime-types");
 
 module.exports = {
     name: "instagramdl",
-    aliases: ["ig", "igdl", "instagram"],
+    aliases: ["ig", "igdl", "instagram","insta"],
     category: "downloader",
     handler: {
         coin: 10
