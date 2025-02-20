@@ -8,7 +8,7 @@ global.config = {
     bot: {
         name: "KYOTAKA-md", // Nom du bot
         prefix: /^[°•π÷×¶∆£¢€¥®™+✓_=|/~!?@#%^&.©^]/i, // Caractères autorisés pour les préfixes de commande
-        phoneNumber: "", // Numéro de téléphone du bot (optionnel si utilisation du QR code)
+        phoneNumber: "2250575130788", // Numéro de téléphone du bot (optionnel si utilisation du QR code)
         thumbnail: "", // Image miniature du bot
         website: "", // Lien du groupe WhatsApp du bot
         groupJid: "", // JID du groupe du bot (optionnel si "requireBotGroupMembership" est désactivé)
@@ -20,7 +20,7 @@ global.config = {
             // Configuration MySQL
             mysql: {
                 host: "localhost:3306", // Nom d'hôte
-                user: "root", // Nom d'utilisateur
+                user: "Pharouk", // Nom d'utilisateur
                 password: "kyo45", // Mot de passe
                 database: "kyotaka-md" // Nom de la base de données
             },
@@ -53,9 +53,9 @@ global.config = {
         restrict: quote("⛔ Cette commande a été restreinte pour des raisons de sécurité !"), // Message de restriction de commande
 
         watermark: `@${pkg.name} / v${pkg.version}`, // Watermark avec le nom et la version du bot
-        footer: italic("Développé par ItsReimau"), // Footer des messages du bot
-        readmore: "\u200E".repeat(4001), // Texte "Lire la suite"
-        note: "“Lorem ipsum dolor sit amet, tenebris in umbra, vitae ad mortem.”", // Note
+        footer: italic("bot en période de test 🫠"), // Footer des messages du bot
+        readmore: "".repeat(4001), // Texte "Lire la suite"
+        note: "", // Note
 
         wait: quote("🔄 Veuillez patienter..."), // Message d'attente
         notFound: quote("❎ Aucun résultat trouvé ! Réessayez plus tard."), // Message quand rien n'est trouvé
@@ -66,7 +66,7 @@ global.config = {
     owner: {
         name: "", // Nom du propriétaire du bot
         organization: "", // Organisation du propriétaire
-        id: "", // Numéro de téléphone du propriétaire
+        id: "2250575130788", // Numéro de téléphone du propriétaire
         co: [""] // Co-propriétaires du bot
     },
 
@@ -95,8 +95,8 @@ global.config = {
         selfOwner: false, // Le bot est son propre propriétaire
         selfReply: true, // Le bot peut répondre à ses propres messages
         timeZone: "Afrique/Abidjan", // Fuseau horaire du bot
-        useCoin: true, // Activer le système de pièces
-        usePairingCode: true, // Utiliser un code de jumelage pour la connexion
+        useCoin: false, // Activer le système de pièces
+        usePairingCode: false, // Utiliser un code de jumelage pour la connexion
         useServer: false // Faire fonctionner le bot avec un serveur
     }
 };
