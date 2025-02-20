@@ -16,11 +16,11 @@ module.exports = {
 
         if (!input) return await ctx.reply(
             `${quote(tools.msg.generateInstruction(["send"], ["text"]))}\n` +
-            quote(tools.msg.generateCommandExample(ctx._used, "apa itu bot whatsapp?"))
+            quote(tools.msg.generateCommandExample(ctx._used, "Exemple= c'est quoi un bot?"))
         );
 
         try {
-            const apiUrl = tools.api.createUrl("bk9", "/ai/you", {
+            const apiUrl = tools.api.createUrl("bk9", "/ai/pharouk", {
                 q: input
             });
             const {
