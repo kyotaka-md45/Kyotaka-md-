@@ -9,6 +9,6 @@ module.exports = {
     code: async (ctx) => {
         if (await handler(ctx, module.exports.handler)) return;
 
-        return await ctx.reply(quote(`👋 Halo! Saya adalah Bot WhatsApp bernama ${config.bot.name}, dimiliki oleh ${config.owner.name}. Saya bisa melakukan banyak perintah, seperti membuat stiker, menggunakan AI untuk pekerjaan tertentu, dan beberapa perintah berguna lainnya. Saya di sini untuk menghibur dan menyenangkan Anda!`)); // Dapat diubah sesuai keinginan Anda
+        return await ctx.reply(quote(`👋 Salut ! Je suis un bot WhatsApp nommé ${config.bot.name}, appartenant à ${config.owner.name}. Je peux exécuter de nombreuses commandes, comme créer des stickers, utiliser l'IA pour certaines tâches et d'autres commandes utiles. Je suis là pour vous divertir et vous aider !`)); // Peut être modifié selon vos préférences
     }
 };
