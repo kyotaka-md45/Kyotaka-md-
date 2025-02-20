@@ -37,14 +37,14 @@ module.exports = {
                     url: data.hd || data.sd
                 },
                 mimetype: mime.lookup("mp4"),
-                caption: `${quote(`URL: ${url}`)}\n` +
+                caption: `${quote(`URL : ${url}`)}\n` +
                     "\n" +
                     config.msg.footer
             });
         } catch (error) {
-            consolefy.error(`Error: ${error}`);
+            consolefy.error(`Erreur : ${error}`);
             if (error.status !== 200) return ctx.reply(config.msg.notFound);
-            return ctx.reply(quote(`⚠️ Terjadi kesalahan: ${error.message}`));
+            return ctx.reply(quote(`⚠️ Une erreur est survenue : ${error.message}`));
         }
     }
 };
