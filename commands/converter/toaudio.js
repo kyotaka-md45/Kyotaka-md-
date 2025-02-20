@@ -27,12 +27,12 @@ module.exports = {
             });
         } catch (error) {
             consolefy.error(`Error: ${error}`);
-            return await ctx.reply(quote(`⚠️ Terjadi kesalahan: ${error.message}`));
+            return await ctx.reply(quote(`⚠️ une erreur c'est produite: ${error.message}`));
         }
     }
 };
 
-// Dibuat oleh ZTRdiamond (https://github.com/ZTRdiamond)
+// 
 async function video2audio(buffer) {
     try {
         if (!buffer) throw new Error("Buffer is undefined.");
