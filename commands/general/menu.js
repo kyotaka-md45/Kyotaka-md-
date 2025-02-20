@@ -15,36 +15,34 @@ module.exports = {
         if (await handler(ctx, module.exports.handler)) return;
 
         try {
-            const {
-                cmd
-            } = ctx._config;
+            const { cmd } = ctx._config;
             const tag = {
-                "ai-chat": "AI (Chat)",
-                "ai-image": "AI (Image)",
-                "converter": "Converter",
-                "downloader": "Downloader",
-                "entertainment": "Entertainment",
-                "game": "Game",
-                "group": "Group",
-                "maker": "Maker",
-                "profile": "Profile",
-                "search": "Search",
-                "tool": "Tool",
-                "owner": "Owner",
-                "information": "Information",
-                "misc": "Miscellaneous"
+                "ai-chat": "IA (Chat)",
+                "ai-image": "IA (Image)",
+                "converter": "Convertisseur",
+                "downloader": "Téléchargeur",
+                "entertainment": "Divertissement",
+                "game": "Jeux",
+                "group": "Groupe",
+                "maker": "Créateur",
+                "profile": "Profil",
+                "search": "Recherche",
+                "tool": "Outil",
+                "owner": "Propriétaire",
+                "information": "Informations",
+                "misc": "Divers"
             };
 
-            let text = `Hai @${ctx.sender.jid.split(/[:@]/)[0]}, berikut adalah daftar perintah yang tersedia!\n` +
+            let text = `Salut @${ctx.sender.jid.split(/[:@]/)[0]}, voici la liste des commandes disponibles !\n` +
                 "\n" +
-                `${quote(`Tanggal: ${moment.tz(config.system.timeZone).locale("id").format("dddd, DD MMMM YYYY")}`)}\n` +
-                `${quote(`Waktu: ${moment.tz(config.system.timeZone).format("HH.mm.ss")}`)}\n` +
+                `${quote(`Date : ${moment.tz(config.system.timeZone).locale("fr").format("dddd, DD MMMM YYYY")}`)}\n` +
+                `${quote(`Heure : ${moment.tz(config.system.timeZone).format("HH.mm.ss")}`)}\n` +
                 "\n" +
-                `${quote(`Uptime: ${tools.general.convertMsToDuration(Date.now() - config.bot.readyAt)}`)}\n` +
-                `${quote(`Database: ${config.bot.dbSize} (Simpl.DB - JSON)`)}\n` +
-                `${quote(`Library: @mengkodingan/ckptw`)}\n` +
+                `${quote(`Uptime : ${tools.general.convertMsToDuration(Date.now() - config.bot.readyAt)}`)}\n` +
+                `${quote(`Base de données : ${config.bot.dbSize} `)}\n` +
+                `${quote(``)}\n` +
                 "\n" +
-                `${italic("Jangan lupa berdonasi agar bot tetap online!")}\n` +
+                `${italic("MERCI !!!!")}\n` +
                 `${config.msg.readmore}\n`;
 
             for (const category of Object.keys(tag)) {
@@ -57,15 +55,15 @@ module.exports = {
                     }));
 
                 if (categoryCommands.length > 0) {
-                    text += `◆ ${bold(tag[category])}\n`;
+                    text += `${bold(tag[category])}\n`;
 
                     categoryCommands.forEach(cmd => {
                         let handlerText = "";
-                        if (cmd.handler.coin) handlerText += "ⓒ";
-                        if (cmd.handler.group) handlerText += "Ⓖ";
-                        if (cmd.handler.owner) handlerText += "Ⓞ";
-                        if (cmd.handler.premium) handlerText += "Ⓟ";
-                        if (cmd.handler.private) handlerText += "ⓟ";
+                        if (cmd.handler.coin) handlerText += "";
+                        if (cmd.handler.group) handlerText += "";
+                        if (cmd.handler.owner) handlerText += "";
+                        if (cmd.handler.premium) handlerText += "";
+                        if (cmd.handler.private) handlerText += "";
 
                         text += quote(monospace(`${ctx._used.prefix + cmd.name} ${handlerText}`));
                         text += "\n";
@@ -80,8 +78,8 @@ module.exports = {
             const fakeText = {
                 key: {
                     fromMe: false,
-                    participant: "13135550002@s.whatsapp.net",
-                    remoteJid: "status@broadcast"
+                    participant: "",
+                    remoteJid: ""
                 },
                 message: {
                     extendedTextMessage: {
@@ -113,8 +111,8 @@ module.exports = {
                 quoted: fakeText
             });
         } catch (error) {
-            consolefy.error(`Error: ${error}`);
-            return await ctx.reply(quote(`⚠️ Terjadi kesalahan: ${error.message}`));
+            consolefy.error(`Erreur : ${error}`);
+            return await ctx.reply(quote(`⚠️ Une erreur est survenue : ${error.message}`));
         }
     }
 };
