@@ -1,4 +1,4 @@
-// Modul dan dependensi yang diperlukan
+// Modules et dépendances nécessaires
 require("./config.js");
 const handler = require("./handler.js");
 const pkg = require("./package.json");
@@ -12,34 +12,34 @@ const http = require("http");
 const path = require("path");
 const SimplDB = require("simpl.db");
 
-// Buat consolefy
+// Création de Consolefy pour l'affichage en console
 const c = new Consolefy({
     tag: pkg.name
 });
 
-// Buat basis data
+// Création de la base de données
 const db = new SimplDB();
 const dbFile = path.join(__dirname, "database.json");
 if (!fs.existsSync(dbFile)) fs.writeFileSync(dbFile, JSON.stringify({}), "utf8");
 
-// Atur konfigurasi ke global
+// Configuration des variables globales
 global.handler = handler;
 global.config.pkg = pkg;
 global.tools = tools;
 global.consolefy = c;
 global.db = db;
 
-// Memulai
+// Démarrage
 c.log(`Starting...`);
 
-// Tampilkan judul menggunakan CFonts
+// Affichage du titre avec CFonts
 CFonts.say(pkg.name, {
     font: "chrome",
     align: "center",
     gradient: ["red", "magenta"]
 });
 
-// Menampilkan informasi paket
+// Affichage des informations sur le package
 const authorName = pkg.author.name || pkg.author;
 CFonts.say(
     `'${pkg.description}'\n` +
@@ -50,7 +50,7 @@ CFonts.say(
     }
 );
 
-// Fungsi untuk menjalankan server jika diaktifkan
+// Fonction pour exécuter le serveur si activé
 if (config.system.useServer) {
     const port = config.system.port;
     const server = http.createServer((req, res) => {
@@ -65,5 +65,5 @@ if (config.system.useServer) {
     });
 }
 
-// Impor dan jalankan modul utama
+// Importation et exécution du module principal
 require("./main.js");
