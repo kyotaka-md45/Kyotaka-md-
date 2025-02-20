@@ -20,8 +20,8 @@ module.exports = {
             `${quote(tools.msg.generateInstruction(["send"], ["text"]))}\n` +
             `${quote(tools.msg.generateCommandExample(ctx._used, "hikaru utada - one last kiss -i 8 -s spotify"))}\n` +
             quote(tools.msg.generatesFlagInformation({
-                "-i <number>": "Pilihan pada data indeks.",
-                "-s <text>": "Sumber untuk memutar lagu (tersedia: soundcloud, spotify, youtube | default: youtube)."
+                "-i <number>": "Sélectionner un élément par son index.",
+                "-s <text>": "Source pour jouer la musique (disponible : soundcloud, spotify, youtube | par défaut : youtube)."
             }))
         );
 
@@ -57,8 +57,8 @@ module.exports = {
                 const data = searchData[searchIndex];
 
                 await ctx.reply(
-                    `${quote(`Judul: ${data.permalink}`)}\n` +
-                    `${quote(`URL: ${data.link}`)}\n` +
+                    `${quote(`Titre : ${data.permalink}`)}\n` +
+                    `${quote(`URL : ${data.link}`)}\n` +
                     "\n" +
                     config.msg.footer
                 );
@@ -84,9 +84,9 @@ module.exports = {
                 const data = searchData[searchIndex];
 
                 await ctx.reply(
-                    `${quote(`Judul: ${data.title}`)}\n` +
-                    `${quote(`Artis: ${data.artist}`)}\n` +
-                    `${quote(`URL: ${data.url}`)}\n` +
+                    `${quote(`Titre : ${data.title}`)}\n` +
+                    `${quote(`Artiste : ${data.artist}`)}\n` +
+                    `${quote(`URL : ${data.url}`)}\n` +
                     "\n" +
                     config.msg.footer
                 );
@@ -111,9 +111,9 @@ module.exports = {
                 const data = searchData[searchIndex];
 
                 await ctx.reply(
-                    `${quote(`Judul: ${data.title}`)}\n` +
-                    `${quote(`Artis: ${data.author.name}`)}\n` +
-                    `${quote(`URL: ${data.url}`)}\n` +
+                    `${quote(`Titre : ${data.title}`)}\n` +
+                    `${quote(`Artiste : ${data.author.name}`)}\n` +
+                    `${quote(`URL : ${data.url}`)}\n` +
                     "\n" +
                     config.msg.footer
                 );
@@ -131,9 +131,9 @@ module.exports = {
                 });
             }
         } catch (error) {
-            consolefy.error(`Error: ${error}`);
+            consolefy.error(`Erreur : ${error}`);
             if (error.status !== 200) return await ctx.reply(config.msg.notFound);
-            return await ctx.reply(quote(`⚠️ Terjadi kesalahan: ${error.message}`));
+            return await ctx.reply(quote(`⚠️ Une erreur est survenue : ${error.message}`));
         }
     }
 };
