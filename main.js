@@ -1,19 +1,11 @@
-// Modul dan dependensi yang diperlukan
+// Required modules and dependencies
 const events = require("./events/handler.js");
-const {
-    Client,
-    CommandHandler
-} = require("@mengkodingan/ckptw");
+const { Client, CommandHandler } = require("@mengkodingan/ckptw");
 const path = require("path");
 
-// Pilih adapter autentikasi
+// Choose authentication adapter
 const authAdapter = (() => {
-    const {
-        adapter,
-        mysql,
-        mongodb,
-        firebase
-    } = config.bot.authAdapter;
+    const { adapter, mysql, mongodb, firebase } = config.bot.authAdapter;
     switch (adapter) {
         case "mysql":
             return require("baileys-mysql").useSqlAuthState(mysql);
@@ -26,7 +18,7 @@ const authAdapter = (() => {
     }
 })();
 
-// Buat instance bot baru
+// Create a new bot instance
 const bot = new Client({
     prefix: config.bot.prefix,
     readIncommingMsg: config.system.autoRead,
@@ -40,12 +32,12 @@ const bot = new Client({
     authAdapter
 });
 
-// Penanganan events
+// Handle events
 events(bot);
 
-// Buat penangan perintah dan muat perintah
+// Create a command handler and load commands
 const cmd = new CommandHandler(bot, path.resolve(__dirname, "commands"));
 cmd.load();
 
-// Luncurkan bot
-bot.launch().catch((error) => console.error(`Error: ${error}`));
+// Launch the bot
+bot.launch().catch((error) => console.error(`Error: ${error}`))
