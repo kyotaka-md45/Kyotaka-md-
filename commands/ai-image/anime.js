@@ -4,7 +4,7 @@ const {
 const mime = require("mime-types");
 
 module.exports = {
-    name: "animegen",
+    name: "anime",
     category: "ai-image",
     handler: {
         coin: 10
@@ -36,7 +36,7 @@ module.exports = {
         } catch (error) {
             consolefy.error(`Error: ${error}`);
             if (error.status !== 200) return await ctx.reply(config.msg.notFound);
-            return await ctx.reply(quote(`⚠️ Terjadi kesalahan: ${error.message}`));
+            return await ctx.reply(quote(`⚠️ une erreur c'est produit: ${error.message}`));
         }
     }
 };
