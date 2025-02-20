@@ -30,7 +30,7 @@ module.exports = {
                 pack: packname || "",
                 author: author || "",
                 type: StickerTypes.FULL,
-                categories: ["🌕"],
+                categories: ["🟢"],
                 id: ctx.id,
                 quality: 50
             });
@@ -38,7 +38,7 @@ module.exports = {
             return await ctx.reply(await sticker.toMessage());
         } catch (error) {
             consolefy.error(`Error: ${error}`);
-            return await ctx.reply(quote(`⚠️ Terjadi kesalahan: ${error.message}`));
+            return await ctx.reply(quote(`⚠️ une erreur c'est produite: ${error.message}`));
         }
     }
 };
