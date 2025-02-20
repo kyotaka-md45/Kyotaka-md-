@@ -1,22 +1,18 @@
-// Modul dan dependensi yang diperlukan
+// Required modules and dependencies
 require("./config.js");
-const {
-    execSync
-} = require("child_process");
+const { execSync } = require("child_process");
 
-// Mendapatkan adapter autentikasi dari konfigurasi
-const {
-    adapter
-} = config.bot.authAdapter;
+// Get authentication adapter from configuration
+const { adapter } = config.bot.authAdapter;
 
-// Daftar modul untuk setiap adapter autentikasi
+// List of modules for each authentication adapter
 const modules = {
     mysql: "baileys-mysql",
     mongodb: "baileys-mongodb",
     firebase: "baileys-firebase",
 };
 
-// Pasang modul jika adapter ditemukan dalam daftar
+// Install module if adapter is found in the list
 if (modules[adapter]) {
     console.log(`Installing ${adapter} module...`);
     execSync(`npm install ${modules[adapter]} --no-save`, {
