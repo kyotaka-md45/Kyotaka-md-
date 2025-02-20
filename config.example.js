@@ -84,9 +84,9 @@ global.config = {
 
     // Paramètres du système du bot
     system: {
-        alwaysOnline: flase, // Le bot reste toujours en ligne
+        alwaysOnline: false, // Le bot reste toujours en ligne
         autoMention: true, // Le bot mentionne automatiquement une personne dans ses réponses
-        autoRead: flase, // Le bot lit automatiquement les messages
+        autoRead: false, // Le bot lit automatiquement les messages
         autoTypingOnCmd: true, // Afficher "en train d'écrire..." lors du traitement d'une commande
         cooldown: 10 * 1000, // Délai entre deux commandes (ms)
         port: 3000, // Port (si le bot est utilisé avec un serveur)
