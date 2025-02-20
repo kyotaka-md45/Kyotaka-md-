@@ -1,5 +1,5 @@
 {
-  "name": "ckptw-wabot",
+  "name": "kyotaka-md",
   "version": "3.2.15",
   "description": "WhatsApp Bot with @mengkodingan/ckptw.",
   "main": "index.js",
@@ -22,7 +22,7 @@
     "whatsapp",
     "whatsapp-bot"
   ],
-  "author": "Muhamad Ikbal Maulana | ItsReimau",
+  "author": "pharouk ",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/itsreimau/ckptw-wabot/issues"
