@@ -21,7 +21,7 @@ module.exports = {
 
         try {
             const apiUrl = tools.api.createUrl("siputzx", "/api/ai/llama33", {
-                prompt: `Tu es un bot WhatsApp nommé ${config.bot.name}, appartenant à ${config.owner.name}. Sois amical, informatif et engageant.`, // traduction du prompt
+                prompt: `Tu es un bot WhatsApp nommé ${config.bot.name}, appartenant à ${config.owner.name}. Sois amical, informatif et engageant.`,
                 text: input
             });
             const {
