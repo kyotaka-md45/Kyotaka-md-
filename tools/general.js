@@ -12,7 +12,7 @@ async function checkAdmin(group, jid) {
         const members = await group.members();
         return members.some((m) => (m.admin === "superadmin" || m.admin === "admin") && m.id === jid);
     } catch (error) {
-        consolefy.error(`Error: ${error}`);
+        consolefy.error(`Erreur : ${error}`);
         return false;
     }
 }
@@ -79,7 +79,7 @@ function clamp(value, min, max) {
 }
 
 function convertMsToDuration(ms) {
-    if (ms < 1000) return "kurang satu detik";
+    if (ms < 1000) return "moins d'une seconde";
 
     const years = Math.floor(ms / (1000 * 60 * 60 * 24 * 365.25));
     const months = Math.floor((ms / (1000 * 60 * 60 * 24 * 30.44)) % 12);
@@ -91,21 +91,21 @@ function convertMsToDuration(ms) {
 
     let durationString = "";
 
-    if (years > 0) durationString += years + " tahun ";
-    if (months > 0) durationString += months + " bulan ";
-    if (weeks > 0) durationString += weeks + " minggu ";
-    if (days > 0) durationString += days + " hari ";
-    if (hours > 0) durationString += hours + " jam ";
-    if (minutes > 0) durationString += minutes + " menit ";
-    if (seconds > 0) durationString += seconds + " detik";
+    if (years > 0) durationString += years + " an(s) ";
+    if (months > 0) durationString += months + " mois ";
+    if (weeks > 0) durationString += weeks + " semaine(s) ";
+    if (days > 0) durationString += days + " jour(s) ";
+    if (hours > 0) durationString += hours + " heure(s) ";
+    if (minutes > 0) durationString += minutes + " minute(s) ";
+    if (seconds > 0) durationString += seconds + " seconde(s)";
 
     return durationString.trim();
 }
 
 function formatSize(byteCount) {
-    if (byteCount === 0) return "0 Bytes";
+    if (byteCount === 0) return "0 Octet";
 
-    const units = ["yBytes", "zBytes", "aBytes", "fBytes", "pBytes", "nBytes", "µBytes", "mBytes", "Bytes", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB"];
+    const units = ["yOctet", "zOctet", "aOctet", "fOctet", "pOctet", "nOctet", "µOctet", "mOctet", "Octet", "Ko", "Mo", "Go", "To", "Po", "Eo", "Zo", "Yo"];
 
     let index = 8;
     let size = byteCount;
@@ -261,7 +261,7 @@ async function translate(text, to) {
         } = await axios.get(apiUrl);
         return data.result;
     } catch (error) {
-        consolefy.error(`Error: ${error}`);
+        consolefy.error(`Erreur : ${error}`);
         return null;
     }
 }
@@ -293,7 +293,7 @@ async function upload(buffer) {
 
         return url;
     } catch (error) {
-        consolefy.error(`Error: ${error}`);
+        consolefy.error(`Erreur : ${error}`);
         return null;
     }
 }
