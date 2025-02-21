@@ -20,7 +20,7 @@ module.exports = {
 
         if (!input) return await ctx.reply(
             `${quote(tools.msg.generateInstruction(["send"], ["text"]))}\n` +
-            quote(tools.msg.generateCommandExample(ctx._used, "i want to be a cat|just meow meow"))
+            quote(tools.msg.generateCommandExample(ctx._used, "je veux être un chat|juste miaou miaou"))
         );
 
         const msgType = ctx.getMessageType();
@@ -44,16 +44,16 @@ module.exports = {
                 pack: config.sticker.packname,
                 author: config.sticker.author,
                 type: StickerTypes.FULL,
-                categories: ["🌕"],
+                categories: ["🟢"],
                 id: ctx.id,
                 quality: 50
             });
 
             return await ctx.reply(await sticker.toMessage());
         } catch (error) {
-            consolefy.error(`Error: ${error}`);
+            consolefy.error(`Erreur : ${error}`);
             if (error.status !== 200) return await ctx.reply(config.msg.notFound);
-            return await ctx.reply(quote(`⚠️ Terjadi kesalahan: ${error.message}`));
+            return await ctx.reply(quote(`⚠️ Une erreur est survenue : ${error.message}`));
         }
     }
 };
