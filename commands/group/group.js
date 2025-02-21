@@ -8,7 +8,7 @@ module.exports = {
     category: "group",
     handler: {
         admin: true,
-        botAdmin: true,
+        botAdmin: false,
         group: true
     },
     code: async (ctx) => {
