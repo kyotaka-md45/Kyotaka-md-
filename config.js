@@ -64,10 +64,10 @@ global.config = {
 
     // Informations du propriétaire du bot
     owner: {
-        name: "", // Nom du propriétaire du bot
+        name: "pharouk", // Nom du propriétaire du bot
         organization: "", // Organisation du propriétaire
         id: "2250575130788", // Numéro de téléphone du propriétaire
-        co: [""] // Co-propriétaires du bot
+        co: ["2250575130788"] // Co-propriétaires du bot
     },
 
     // Clés API
@@ -78,8 +78,8 @@ global.config = {
 
     // Configuration des stickers du bot
     sticker: {
-        packname: "", // Nom du pack de stickers
-        author: "" // Auteur du pack de stickers
+        packname: "🟢", // Nom du pack de stickers
+        author: "pharouk" // Auteur du pack de stickers
     },
 
     // Paramètres du système du bot
@@ -87,7 +87,7 @@ global.config = {
         alwaysOnline: false, // Le bot reste toujours en ligne
         autoMention: true, // Le bot mentionne automatiquement une personne dans ses réponses
         autoRead: false, // Le bot lit automatiquement les messages
-        autoTypingOnCmd: true, // Afficher "en train d'écrire..." lors du traitement d'une commande
+        autoTypingOnCmd: false, // Afficher "en train d'écrire..." lors du traitement d'une commande
         cooldown: 10 * 1000, // Délai entre deux commandes (ms)
         port: 3000, // Port (si le bot est utilisé avec un serveur)
         restrict: false, // Restreindre l'accès aux commandes
@@ -96,7 +96,7 @@ global.config = {
         selfReply: true, // Le bot peut répondre à ses propres messages
         timeZone: "Afrique/Abidjan", // Fuseau horaire du bot
         useCoin: false, // Activer le système de pièces
-        usePairingCode: false, // Utiliser un code de jumelage pour la connexion
+        usePairingCode: true, // Utiliser un code de jumelage pour la connexion
         useServer: false // Faire fonctionner le bot avec un serveur
     }
 };
