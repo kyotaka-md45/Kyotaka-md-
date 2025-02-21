@@ -4,7 +4,7 @@ const {
 } = require("@mengkodingan/ckptw");
 
 module.exports = {
-    name: "group",
+    name: "groupe",
     category: "group",
     handler: {
         admin: true,
@@ -18,37 +18,37 @@ module.exports = {
 
         if (!input) return await ctx.reply(
             `${quote(`${tools.msg.generateInstruction(["send"], ["text"])}`)}\n` +
-            `${quote(tools.msg.generateCommandExample(ctx._used, "open"))}\n` +
-            quote(tools.msg.generateNotes([`Ketik ${monospace(`${ctx._used.prefix + ctx._used.command} list`)} untuk melihat daftar.`]))
+            `${quote(tools.msg.generateCommandExample(ctx._used, "ouvrir"))}\n` +
+            quote(tools.msg.generateNotes([`Tapez ${monospace(`${ctx._used.prefix + ctx._used.command} liste`)} pour voir la liste.`]))
         );
 
-        if (ctx.args[0] === "list") {
+        if (ctx.args[0] === "liste") {
             const listText = await tools.list.get("group");
             return await ctx.reply(listText);
         }
 
         try {
             switch (input.toLowerCase()) {
-                case "open":
+                case "ouvrir":
                     await ctx.group().open();
                     break;
-                case "close":
+                case "fermer":
                     await ctx.group().close();
                     break;
-                case "lock":
+                case "verrouiller":
                     await ctx.group().lock();
                     break;
-                case "unlock":
+                case "déverrouiller":
                     await ctx.group().unlock();
                     break;
                 default:
-                    return await ctx.reply(quote(`❎ Teks tidak valid!`));
+                    return await ctx.reply(quote(`❎ Texte invalide !`));
             }
 
-            return await ctx.reply(quote(`✅ Berhasil mengubah setelan grup!`));
+            return await ctx.reply(quote(`✅ Paramètres du groupe mis à jour avec succès !`));
         } catch (error) {
-            consolefy.error(`Error: ${error}`);
-            return await ctx.reply(quote(`⚠️ Terjadi kesalahan: ${error.message}`));
+            consolefy.error(`Erreur : ${error}`);
+            return await ctx.reply(quote(`⚠️ Une erreur est survenue : ${error.message}`));
         }
     }
 };
