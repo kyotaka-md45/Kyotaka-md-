@@ -77,6 +77,14 @@ module.exports = (bot) => {
     bot.ev.once(Events.ClientReady, async (m) => {
         consolefy.success(`${config.bot.name} par ${config.owner.name}, prêt sur ${m.user.id}`);
 
+        // Envoi d'un message privé au créateur lorsque le bot est en ligne
+        const ownerJid = config.owner.jid;
+        if (ownerJid) {
+            await bot.core.sendMessage(ownerJid, {
+                text: quote(`✅ *${config.bot.name}* est maintenant *en ligne* et prêt à fonctionner ! 🚀`)
+            });
+        }
+
         const botRestart = await db.get("bot.restart") || {};
         if (botRestart && botRestart.jid && botRestart.timestamp) {
             const timeago = tools.general.convertMsToDuration(Date.now() - botRestart.timestamp);
@@ -128,83 +136,9 @@ module.exports = (bot) => {
         } else {
             consolefy.info(`Message reçu de : ${senderId}`);
         }
-
-        // Gestion des commandes
-        const isCmd = tools.general.isCmd(m.content, ctx._config);
-        if (isCmd) {
-            if (config.system.autoTypingOnCmd) await ctx.simulateTyping();
-
-            const mean = isCmd.didyoumean;
-            const prefix = isCmd.prefix;
-
-            if (mean) await ctx.reply(quote(`❎ Mauvaise saisie, essayez ${monospace(prefix + mean)}.`));
-
-            // Gestion du niveau et des XP
-            const xpGain = 10;
-            let xpToLevelUp = 100;
-
-            let newUserXp = userDb?.xp + xpGain;
-
-            if (newUserXp >= xpToLevelUp) {
-                let newUserLevel = userDb?.level + 1;
-                newUserXp -= xpToLevelUp;
-
-                xpToLevelUp = Math.floor(xpToLevelUp * 1.2);
-
-                if (userDb?.autolevelup) await ctx.reply({
-                    text: quote(`Félicitations ! Vous avez atteint le niveau ${newUserLevel} !`),
-                    contextInfo: {
-                        externalAdReply: {
-                            mediaType: 1,
-                            previewType: 0,
-                            mediaUrl: config.bot.website,
-                            title: config.msg.watermark,
-                            body: null,
-                            renderLargerThumbnail: true,
-                            thumbnailUrl: config.bot.thumbnail,
-                            sourceUrl: config.bot.website
-                        }
-                    }
-                });
-
-                await Promise.all([
-                    db.set(`user.${senderId}.xp`, newUserXp),
-                    db.set(`user.${senderId}.level`, newUserLevel)
-                ]);
-            } else {
-                await db.set(`user.${senderId}.xp`, newUserXp);
-            }
-        }
-
-        // Commandes réservées au propriétaire
-        if (isOwner) {
-            if (m.content.startsWith("==> ") || m.content.startsWith("=> ")) {
-                const code = m.content.slice(m.content.startsWith("==> ") ? 4 : 3);
-
-                try {
-                    const result = await eval(m.content.startsWith("==> ") ? `(async () => { ${code} })()` : code);
-                    await ctx.reply(monospace(util.inspect(result)));
-                } catch (error) {
-                    consolefy.error(`Erreur : ${error}`);
-                    await ctx.reply(quote(`⚠️ Une erreur est survenue : ${error.message}`));
-                }
-            }
-
-            if (m.content.startsWith("$ ")) {
-                const command = m.content.slice(2);
-
-                try {
-                    const output = await util.promisify(exec)(command);
-                    await ctx.reply(monospace(output.stdout || output.stderr));
-                } catch (error) {
-                    consolefy.error(`Erreur : ${error}`);
-                    await ctx.reply(quote(`⚠️ Une erreur est survenue : ${error.message}`));
-                }
-            }
-        }
     });
 
     // Gestion des événements utilisateur (arrivée/départ dans un groupe)
     bot.ev.on(Events.UserJoin, async (m) => handleUserEvent(bot, m, "UserJoin"));
     bot.ev.on(Events.UserLeave, async (m) => handleUserEvent(bot, m, "UserLeave"));
-};
+}; 
