@@ -5,8 +5,8 @@ const axios = require("axios");
 const mime = require("mime-types");
 
 module.exports = {
-    name: "youtubevideo",
-    aliases: ["ytmp4", "ytv", "ytvideo"],
+    name: "youtube",
+    aliases: ["ytb", "ytv", "yt"],
     category: "downloader",
     handler: {
         coin: 10
