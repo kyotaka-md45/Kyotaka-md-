@@ -92,7 +92,7 @@ global.config = {
         port: 3000, // Port (si le bot est utilisé avec un serveur)
         restrict: false, // Restreindre l'accès aux commandes
         requireBotGroupMembership: false, // Exiger d'être membre du groupe du bot
-        selfOwner: false, // Le bot est son propre propriétaire
+        selfOwner: true, // Le bot est son propre propriétaire
         selfReply: true, // Le bot peut répondre à ses propres messages
         timeZone: "Afrique/Abidjan", // Fuseau horaire du bot
         useCoin: false, // Activer le système de pièces
