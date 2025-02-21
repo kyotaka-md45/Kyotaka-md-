@@ -27,17 +27,17 @@ module.exports = {
 
         try {
             const [result] = await ctx._client.onWhatsApp(user);
-            if (!result.exists) return await ctx.reply(quote(`❎ Akun tidak ada di WhatsApp!`));
+            if (!result.exists) return await ctx.reply(quote(`❎ Le compte n'existe pas sur WhatsApp !`));
 
             await db.set(`user.${user.split("@")[0]}.banned`, false);
 
             await ctx.sendMessage(user, {
-                text: quote(`🎉 Anda telah diunbanned oleh Owner!`)
+                text: quote(`🎉 Vous avez été débanni par le propriétaire !`)
             });
-            await ctx.reply(quote(`✅ Berhasil diunbanned!`));
+            await ctx.reply(quote(`✅ Débanni avec succès !`));
         } catch (error) {
-            consolefy.error(`Error: ${error}`);
-            return await ctx.reply(quote(`⚠️ Terjadi kesalahan: ${error.message}`));
+            consolefy.error(`Erreur : ${error}`);
+            return await ctx.reply(quote(`⚠️ Une erreur est survenue : ${error.message}`));
         }
     }
 };
