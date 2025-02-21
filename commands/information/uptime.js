@@ -1,6 +1,4 @@
-const {
-    quote
-} = require("@mengkodingan/ckptw");
+const { quote } = require("@mengkodingan/ckptw");
 
 module.exports = {
     name: "uptime",
@@ -8,9 +6,13 @@ module.exports = {
     category: "information",
     handler: {},
     code: async (ctx) => {
+        // Vérification des permissions
         if (await handler(ctx, module.exports.handler)) return;
 
-        const uptime = tools.general.convertMsToDuration(Date.now() - config.bot.readyAt);
-        return await ctx.reply(quote(`Le bot est actif depuis ${uptime}.`));
+        // Calcul du temps d'activité
+        const tempsActif = tools.general.convertMsToDuration(Date.now() - config.bot.readyAt);
+
+        // Réponse du bot
+        return await ctx.reply(quote(`⏳ Le bot est actif depuis : ${uptime}.`));
     }
 };
