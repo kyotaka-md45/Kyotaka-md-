@@ -67,7 +67,7 @@ global.config = {
         name: "pharouk", // Nom du propriétaire du bot
         organization: "", // Organisation du propriétaire
         id: "2250575130788", // Numéro de téléphone du propriétaire
-        co: ["2250575130788"] // Co-propriétaires du bot
+        co: ["2250564458549"] // Co-propriétaires du bot
     },
 
     // Clés API
