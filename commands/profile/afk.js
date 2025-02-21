@@ -1,10 +1,8 @@
-const {
-    quote
-} = require("@mengkodingan/ckptw");
+const { quote } = require("@mengkodingan/ckptw");
 
 module.exports = {
     name: "afk",
-    category: "profile",
+    category: "profil",
     handler: {},
     code: async (ctx) => {
         if (await handler(ctx, module.exports.handler)) return;
@@ -17,10 +15,10 @@ module.exports = {
                 timestamp: Date.now()
             });
 
-            return await ctx.reply(quote(`📴 Anda akan AFK, ${input ? `dengan alasan "${input}"` : "tanpa alasan apapun"}.`));
+            return await ctx.reply(quote(`📴 Vous êtes maintenant en mode AFK ${input ? `pour la raison : "${input}"` : "sans préciser de raison"}.`));
         } catch (error) {
-            consolefy.error(`Error: ${error}`);
-            return await ctx.reply(quote(`⚠️ Terjadi kesalahan: ${error.message}`));
+            consolefy.error(`Erreur: ${error}`);
+            return await ctx.reply(quote(`⚠️ Une erreur est survenue : ${error.message}`));
         }
     }
 };
