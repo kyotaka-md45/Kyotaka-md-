@@ -16,8 +16,8 @@ module.exports = {
 
         if (!input) return await ctx.reply(
             `${quote(tools.msg.generateInstruction(["send"], [ "image","text"]))}\n` +
-            `${quote(tools.msg.generateCommandExample(ctx._used, "apa itu bot whatsapp?"))}\n` +
-            quote(tools.msg.generateNotes(["AI ini dapat melihat media dan menjawab pertanyaan tentangnya. Kirim media dan tanyakan apa saja!"]))
+            `${quote(tools.msg.generateCommandExample(ctx._used, "qu'est-ce qu'un bot WhatsApp ?"))}\n` +
+            quote(tools.msg.generateNotes(["Cette IA peut voir des médias et répondre à des questions à leur sujet. Envoyez un média et posez n'importe quelle question !"]))
         );
 
         const msgType = ctx.getMessageType();
@@ -50,9 +50,9 @@ module.exports = {
                 return await ctx.reply(data.answer);
             }
         } catch (error) {
-            consolefy.error(`Error: ${error}`);
+            consolefy.error(`Erreur : ${error}`);
             if (error.status !== 200) return await ctx.reply(config.msg.notFound);
-            return await ctx.reply(quote(`⚠️ Terjadi kesalahan: ${error.message}`));
+            return await ctx.reply(quote(`⚠️ Une erreur est survenue : ${error.message}`));
         }
     }
 };
