@@ -7,16 +7,17 @@ const axios = require("axios");
 const session = new Map();
 
 module.exports = {
-    name: "caklontong",
+    name: "devinette",
     category: "game",
     handler: {},
     code: async (ctx) => {
         if (await handler(ctx, module.exports.handler)) return;
 
-        if (session.has(ctx.id)) return await ctx.reply(quote(`🎮 Sesi permainan sedang berjalan!`));
+        if (session.has(ctx.id)) return await ctx.reply(quote(`🎮 Une partie est déjà en cours !`));
 
         try {
-            const apiUrl = tools.api.createUrl("siputzx", "/api/games/caklontong");
+            // Utilisation d'un fichier JSON contenant des devinettes françaises
+            const apiUrl = tools.api.createUrl("monapi", "/api/games/devinettes");
             const {
                 data
             } = (await axios.get(apiUrl)).data;
@@ -25,17 +26,17 @@ module.exports = {
                 coin: 5,
                 timeout: 60000,
                 senderId: ctx.sender.jid.split(/[:@]/)[0],
-                answer: data.jawaban.toUpperCase()
+                answer: data.reponse.toUpperCase()
             };
 
             session.set(ctx.id, true);
 
             await ctx.reply(
-                `${quote(`Soal: ${data.soal}`)}\n` +
-                `${quote(`Bonus: ${game.coin} Koin`)}\n` +
-                `${quote(`Batas waktu: ${game.timeout / 1000} detik`)}\n` +
-                `${quote("Ketik 'hint' untuk bantuan.")}\n` +
-                `${quote("Ketik 'surrender' untuk menyerah.")}\n` +
+                `${quote(`🧠 Devinette : ${data.question}`)}\n` +
+                `${quote(`💰 Récompense : ${game.coin} pièces`)}\n` +
+                `${quote(`⏳ Temps limite : ${game.timeout / 1000} secondes`)}\n` +
+                `${quote("💡 Tape 'indice' pour un indice.")}\n` +
+                `${quote("🏳️ Tape 'abandon' pour arrêter la partie.")}\n` +
                 "\n" +
                 config.msg.footer
             );
@@ -55,46 +56,46 @@ module.exports = {
                     ]);
                     await ctx.sendMessage(
                         ctx.id, {
-                            text: `${quote("💯 Benar!")}\n` +
-                                `${quote(data.deskripsi)}\n` +
-                                quote(`+${game.coin} Koin`)
+                            text: `${quote("🎉 Bravo, c'est la bonne réponse !")}\n` +
+                                `${quote(data.explication)}\n` +
+                                quote(`+${game.coin} pièces`)
                         }, {
                             quoted: m
                         }
                     );
                     return collector.stop();
-                } else if (userAnswer === "HINT") {
-                    const clue = game.answer.replace(/[AIUEO]/g, "_");
+                } else if (userAnswer === "INDICE") {
+                    const clue = game.answer.replace(/[AEIOUY]/g, "_");
                     await ctx.sendMessage(ctx.id, {
                         text: monospace(clue)
                     }, {
                         quoted: m
                     });
-                } else if (userAnswer === "SURRENDER") {
+                } else if (userAnswer === "ABANDON") {
                     session.delete(ctx.id);
                     await ctx.reply(
-                        `${quote("🏳️ Anda menyerah!")}\n` +
-                        quote(`Jawabannya adalah ${game.answer}.`)
+                        `${quote("🏳️ Vous avez abandonné !")}\n` +
+                        quote(`La réponse était : ${game.answer}.`)
                     );
                     return collector.stop();
                 }
             });
 
             collector.on("end", async () => {
-                const description = data.deskripsi;
+                const description = data.explication;
 
                 if (session.has(ctx.id)) {
                     session.delete(ctx.id);
                     return await ctx.reply(
-                        `${quote("⏱ Waktu habis!")}\n` +
-                        `${quote(`Jawabannya adalah ${game.answer}.`)}\n` +
+                        `${quote("⏱ Temps écoulé !")}\n` +
+                        `${quote(`La réponse était : ${game.answer}.`)}\n` +
                         quote(description)
                     );
                 }
             });
         } catch (error) {
-            consolefy.error(`Error: ${error}`);
-            return await ctx.reply(quote(`⚠️ Terjadi kesalahan: ${error.message}`));
+            consolefy.error(`Erreur : ${error}`);
+            return await ctx.reply(quote(`⚠️ Une erreur est survenue : ${error.message}`));
         }
     }
 };
