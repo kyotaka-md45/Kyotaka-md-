@@ -1,4 +1,4 @@
-// Daftar API gratis, gunakan dengan bijak!
+// Liste des API gratuites, utilisez-les avec sagesse !
 const APIs = {
     agatz: {
         baseURL: "https://api.agatz.xyz"
@@ -61,7 +61,7 @@ function createUrl(apiNameOrURL, endpoint, params = {}, apiKeyParamName) {
 
         return apiUrl.toString();
     } catch (error) {
-        consolefy.error(`Error: ${error}`);
+        consolefy.error(`Erreur : ${error}`);
         return null;
     }
 }
