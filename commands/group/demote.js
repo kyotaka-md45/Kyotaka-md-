@@ -25,14 +25,14 @@ module.exports = {
         });
 
         try {
-            if ((await !tools.general.isAdmin(ctx.group(), account))) return await ctx.reply(quote(`❎ Dia adalah anggota!`));
+            if ((await !tools.general.isAdmin(ctx.group(), account))) return await ctx.reply(quote(`❎ Cet utilisateur est déjà un membre ordinaire !`));
 
             await ctx.group().demote([account]);
 
-            return await ctx.reply(quote(`✅ Berhasil diturunkan dari admin menjadi anggota!`));
+            return await ctx.reply(quote(`✅ L'utilisateur a été rétrogradé et n'est plus administrateur !`));
         } catch (error) {
-            consolefy.error(`Error: ${error}`);
-            return await ctx.reply(quote(`⚠️ Terjadi kesalahan: ${error.message}`));
+            consolefy.error(`Erreur : ${error}`);
+            return await ctx.reply(quote(`⚠️ Une erreur est survenue : ${error.message}`));
         }
     }
 };
