@@ -5,7 +5,7 @@ const axios = require("axios");
 
 module.exports = {
     name: "llama",
-    category: "ai-chat",
+    category: "ia-chat",  
     handler: {
         coin: 10
     },
@@ -16,12 +16,12 @@ module.exports = {
 
         if (!input) return await ctx.reply(
             `${quote(tools.msg.generateInstruction(["send"], ["text"]))}\n` +
-            quote(tools.msg.generateCommandExample(ctx._used, "apa itu bot whatsapp?"))
+            quote(tools.msg.generateCommandExample(ctx._used, "Qu'est-ce qu'un bot WhatsApp ?")) 
         );
 
         try {
             const apiUrl = tools.api.createUrl("siputzx", "/api/ai/llama33", {
-                prompt: `You are a WhatsApp bot named ${config.bot.name}, owned by ${config.owner.name}. Be friendly, informative, and engaging.`, // Dapat diubah sesuai keinginan Anda
+                prompt: `Tu es un bot WhatsApp nommé ${config.bot.name}, appartenant à ${config.owner.name}. Sois amical, informatif et engageant.`, // traduction du prompt
                 text: input
             });
             const {
@@ -30,9 +30,9 @@ module.exports = {
 
             return await ctx.reply(data);
         } catch (error) {
-            consolefy.error(`Error: ${error}`);
+            consolefy.error(`Erreur : ${error}`);  
             if (error.status !== 200) return await ctx.reply(config.msg.notFound);
-            return await ctx.reply(quote(`⚠️ Terjadi kesalahan: ${error.message}`));
+            return await ctx.reply(quote(`⚠️ Une erreur s'est produite : ${error.message}`));  
         }
     }
 };
