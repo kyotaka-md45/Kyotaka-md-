@@ -5,7 +5,7 @@ const axios = require("axios");
 const mime = require("mime-types");
 
 module.exports = {
-    name: "tiktokdl",
+    name: "tiktok",
     aliases: ["tiktok", "tiktoknowm", "tt", "ttdl", "vt", "vtdl", "vtdltiktok", "vtnowm"],
     category: "downloader",
     handler: {
@@ -82,7 +82,7 @@ module.exports = {
         } catch (error) {
             consolefy.error(`Error: ${error}`);
             if (error.status !== 200) return await ctx.reply(config.msg.notFound);
-            return await ctx.reply(quote(`⚠️ une eureur c'est produite: ${error.message}`));
+            return await ctx.reply(quote(`⚠️ Une erreur s'est produite : ${error.message}. `));
         }
     }
 };
