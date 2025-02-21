@@ -3,7 +3,7 @@ const {
 } = require("@mengkodingan/ckptw");
 
 module.exports = {
-    name: "add",
+    name: "ajouter",
     category: "group",
     handler: {
         admin: true,
@@ -26,23 +26,22 @@ module.exports = {
             const account = `${accountFormatted}@s.whatsapp.net`;
 
             const [result] = await ctx._client.onWhatsApp(accountFormatted);
-            if (!result.exists) return await ctx.reply(quote(`❎ Akun tidak ada di WhatsApp!`));
+            if (!result.exists) return await ctx.reply(quote(`❎ Ce compte n'existe pas sur WhatsApp !`));
 
             ctx.group().add([account]).then(async (result) => {
                 const res = result[0];
                 if (res.status === "403") {
                     const code = await ctx.group().inviteCode();
                     await ctx.sendMessage(res.jid, {
-                        text: quote(`👋 Hai, saya diminta untuk menambahkan Anda ke grup tetapi terjadi kesalahan. Bisakah kamu bergabung sendiri? https://chat.whatsapp.com/${code}`)
+                        text: quote(`👋 Bonjour, j'ai essayé de vous ajouter au groupe, mais une erreur s'est produite. Pouvez-vous rejoindre vous-même ? https://chat.whatsapp.com/${code}`)
                     });
                 }
             });
 
-            return await ctx.reply(quote(`✅ Berhasil ditambahkan!`));
+            return await ctx.reply(quote(`✅ Utilisateur ajouté avec succès !`));
         } catch (error) {
-            consolefy.error(`Error: ${error}`);
-            return await ctx.reply(quote(`⚠️ Terjadi kesalahan: ${error.message}`));
+            consolefy.error(`Erreur : ${error}`);
+            return await ctx.reply(quote(`⚠️ Une erreur est survenue : ${error.message}`));
         }
-
     }
 };
