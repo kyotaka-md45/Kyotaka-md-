@@ -3,8 +3,8 @@ const {
 } = require("@mengkodingan/ckptw");
 
 module.exports = {
-    name: "setname",
-    category: "group",
+    name: "setnom",
+    category: "groupe",
     handler: {
         admin: true,
         botAdmin: true,
@@ -23,10 +23,10 @@ module.exports = {
         try {
             await ctx.group().updateSubject(input);
 
-            return await ctx.reply(quote(`✅ Berhasil mengubah nama grup!`));
+            return await ctx.reply(quote(`✅ Nom du groupe modifié avec succès !`));
         } catch (error) {
-            consolefy.error(`Error: ${error}`);
-            return await ctx.reply(quote(`⚠️ Terjadi kesalahan: ${error.message}`));
+            consolefy.error(`Erreur : ${error}`);
+            return await ctx.reply(quote(`⚠️ Une erreur est survenue : ${error.message}`));
         }
     }
 };
