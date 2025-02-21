@@ -6,7 +6,7 @@ const mime = require("mime-types");
 
 module.exports = {
     name: "waifu",
-    category: "entertainment",
+    category: "divertissement",  
     handler: {
         coin: 10
     },
@@ -27,9 +27,9 @@ module.exports = {
                 mimetype: mime.lookup("png")
             });
         } catch (error) {
-            consolefy.error(`Error: ${error}`);
+            consolefy.error(`Erreur : ${error}`);  // traduction de "Error"
             if (error.status !== 200) return await ctx.reply(config.msg.notFound);
-            return await ctx.reply(quote(`⚠️ Terjadi kesalahan: ${error.message}`));
+            return await ctx.reply(quote(`⚠️ Une erreur s'est produite : ${error.message}`));   
         }
     }
 };
