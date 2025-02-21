@@ -3,8 +3,8 @@ const {
 } = require("@mengkodingan/ckptw");
 
 module.exports = {
-    name: "banuser",
-    aliases: ["ban", "bu"],
+    name: "bannir",
+    aliases: ["ban", "bani"],
     category: "owner",
     handler: {
         owner: true
@@ -27,17 +27,17 @@ module.exports = {
 
         try {
             const [result] = await ctx._client.onWhatsApp(user);
-            if (!result.exists) return await ctx.reply(quote(`❎ Akun tidak ada di WhatsApp!`));
+            if (!result.exists) return await ctx.reply(quote(`❎ Le compte n'existe pas sur WhatsApp !`));
 
             await db.set(`user.${user.split("@")[0]}.banned`, true);
 
             await ctx.sendMessage(user, {
-                text: quote(`🎉 Anda telah dibanned oleh Owner!`)
+                text: quote(`🎉 Vous avez été banni par le propriétaire !`)
             });
-            return await ctx.reply(quote(`✅ Berhasil dibanned!`));
+            return await ctx.reply(quote(`✅ Banni avec succès !`));
         } catch (error) {
-            consolefy.error(`Error: ${error}`);
-            return await ctx.reply(quote(`⚠️ Terjadi kesalahan: ${error.message}`));
+            consolefy.error(`Erreur : ${error}`);
+            return await ctx.reply(quote(`⚠️ Une erreur est survenue : ${error.message}`));
         }
     }
 };
