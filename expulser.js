@@ -3,8 +3,8 @@ const {
 } = require("@mengkodingan/ckptw");
 
 module.exports = {
-    name: "kick",
-    category: "group",
+    name: "expulser",
+    category: "groupe",
     handler: {
         admin: true,
         botAdmin: true,
@@ -26,14 +26,14 @@ module.exports = {
         });
 
         try {
-            if (await tools.general.isAdmin(ctx.group(), account)) return await ctx.reply(quote(`❎ Dia adalah admin grup!`));
+            if (await tools.general.isAdmin(ctx.group(), account)) return await ctx.reply(quote(`❎ Cette personne est administrateur du groupe !`));
 
             await ctx.group().kick([account]);
 
-            return await ctx.reply(quote(`✅ Berhasil dikeluarkan!`));
+            return await ctx.reply(quote(`✅ Expulsion réussie !`));
         } catch (error) {
-            consolefy.error(`Error: ${error}`);
-            return await ctx.reply(quote(`⚠️ Terjadi kesalahan: ${error.message}`));
+            consolefy.error(`Erreur : ${error}`);
+            return await ctx.reply(quote(`⚠️ Une erreur est survenue : ${error.message}`));
         }
     }
 };
