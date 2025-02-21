@@ -1,6 +1,6 @@
 {
   "name": "kyotaka-md",
-  "version": "3.2.15",
+  "version": "1.0.0",
   "description": "WhatsApp Bot with @mengkodingan/ckptw.",
   "main": "index.js",
   "directories": {
