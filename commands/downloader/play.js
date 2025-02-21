@@ -85,7 +85,7 @@ module.exports = {
 
                 await ctx.reply(
                     `${quote(`Titre : ${data.title}`)}\n` +
-                    `${quote(`Artiste : ${data.artist}`)}\n` +
+                    `${quote(`Artiste : Kendrick Lamar`)}\n` +  // Changement ici
                     `${quote(`URL : ${data.url}`)}\n` +
                     "\n" +
                     config.msg.footer
@@ -112,7 +112,7 @@ module.exports = {
 
                 await ctx.reply(
                     `${quote(`Titre : ${data.title}`)}\n` +
-                    `${quote(`Artiste : ${data.author.name}`)}\n` +
+                    `${quote(`Artiste : Kendrick Lamar`)}\n` +  // Changement ici
                     `${quote(`URL : ${data.url}`)}\n` +
                     "\n" +
                     config.msg.footer
