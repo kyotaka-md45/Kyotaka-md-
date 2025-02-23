@@ -3,8 +3,8 @@ const {
 } = require("@mengkodingan/ckptw");
 
 module.exports = {
-    name: "setbotpp",
-    aliases: ["setboticon", "seticonbot", "setppbot"],
+    name: "modiffpp",
+    aliases: ["modifpp", "changpp", "ajoupp"],
     category: "owner",
     handler: {
         owner: true
@@ -24,10 +24,10 @@ module.exports = {
             const buffer = await ctx.msg.media.toBuffer() || await ctx.quoted?.media.toBuffer();
             await ctx._client.updateProfilePicture(ctx._client.user.id, buffer);
 
-            return await ctx.reply(quote(`✅ Berhasil mengubah gambar profil foto grup!`));
+            return await ctx.reply(quote(`✅ Image de profil du bot mise à jour avec succès !`));
         } catch (error) {
-            consolefy.error(`Error: ${error}`);
-            return await ctx.reply(quote(`⚠️ Terjadi kesalahan: ${error.message}`));
+            consolefy.error(`Erreur : ${error}`);
+            return await ctx.reply(quote(`⚠️ Une erreur s'est produite : ${error.message}`));
         }
     }
 };
