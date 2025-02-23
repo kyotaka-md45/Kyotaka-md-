@@ -27,13 +27,13 @@ module.exports = {
             const res = await ctx.groups.acceptInvite(urlCode);
 
             await ctx.sendMessage(res, {
-                text: quote(`👋 Halo! Saya adalah Bot WhatsApp bernama ${config.bot.name}, dimiliki oleh ${config.owner.name}. Saya bisa melakukan banyak perintah, seperti membuat stiker, menggunakan AI untuk pekerjaan tertentu, dan beberapa perintah berguna lainnya. Saya di sini untuk menghibur dan menyenangkan Anda!`)
+                text: quote(`👋 Bonjour ! Je suis un bot WhatsApp nommé ${config.bot.name}, appartenant à ${config.owner.name}. Je peux exécuter de nombreuses commandes, comme créer des stickers, utiliser l'IA pour certaines tâches, et plusieurs autres commandes utiles. Je suis ici pour vous divertir et vous aider !`)
             });
 
-            return await ctx.reply(quote(`✅ Berhasil bergabung dengan grup!`));
+            return await ctx.reply(quote(`✅ Rejoint le groupe avec succès !`));
         } catch (error) {
-            consolefy.error(`Error: ${error}`);
-            return await ctx.reply(quote(`⚠️ Terjadi kesalahan: ${error.message}`));
+            consolefy.error(`Erreur : ${error}`);
+            return await ctx.reply(quote(`⚠️ Une erreur s'est produite : ${error.message}`));
         }
     }
 };
