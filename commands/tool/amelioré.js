@@ -5,8 +5,8 @@ const mime = require("mime-types");
 
 module.exports = {
     name: "amelioré",
-    aliases: ["upscaler"],
-    category: "outil",
+    aliases: ["upscaler","ame"],
+    category: "tool",
     permissions: {
         coin: 10
     },
