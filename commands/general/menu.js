@@ -35,13 +35,13 @@ module.exports = {
             const memory = `${Math.round(memoryUsage * 100) / 100}MB`; // Affichage arrondi à 2 décimales
             const prefix = ctx.used.prefix || "!"; 
 
-            let responseText = `@${userID}\n` +
+            let responseText = `utilisateurs @${userID}\n` +
                 `Nombre de plugins : ${Object.keys(categories).length}\n` +
                 `Mémoire : ${memory}\n` +
                 `Uptime : ${uptime}\n` +
                 `Plateforme : ${platform}\n` +
                 `Préfixe : ${prefix}\n\n` +
-                "╭─────────────────────────────────\n";
+                "╭─────────────────────────────\n";
 
             for (const category of Object.keys(categories)) {
                 const categoryCommands = Array.from(cmd.values())
