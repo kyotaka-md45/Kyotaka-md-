@@ -3,7 +3,7 @@ const {
 } = require("@mengkodingan/ckptw");
 
 module.exports = {
-    name: "otagall",
+    name: "taguer",
     category: "owner",
     handler: {
         group: true,
@@ -12,7 +12,7 @@ module.exports = {
     code: async (ctx) => {
         if (await handler(ctx, module.exports.handler)) return;
 
-        const input = ctx.args.join(" ") || "Saya tidak tahu harus mengetik apa...";
+        const input = ctx.args.join(" ") || "Je ne sais pas quoi écrire...";
 
         try {
             const members = await ctx.group().members();
@@ -32,8 +32,8 @@ module.exports = {
                 mentions: mentions.map(m => m.mention)
             });
         } catch (error) {
-            consolefy.error(`Error: ${error}`);
-            return await ctx.reply(quote(`⚠️ Terjadi kesalahan: ${error.message}`));
+            consolefy.error(`Erreur : ${error}`);
+            return await ctx.reply(quote(`⚠️ Une erreur s'est produite : ${error.message}`));
         }
     }
 };
